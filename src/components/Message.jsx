@@ -15,6 +15,14 @@ const Message = ({ message }) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
 
+  console.log(
+    message.date.toDate().toLocaleString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    })
+  );
+
   return (
     (message.text !== "" || message.img) && (
       <div
@@ -30,7 +38,13 @@ const Message = ({ message }) => {
             }
             alt=""
           />
-          <span>just now</span>
+          <span>
+            {message.date.toDate().toLocaleString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: true,
+            })}
+          </span>
         </div>
         <div className="message-content">
           {message.text !== "" && <p>{message.text}</p>}

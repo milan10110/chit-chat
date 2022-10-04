@@ -16,12 +16,14 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const Input = () => {
   const [text, setText] = useState("");
+  const [textBox, setTextBox] = useState("");
   const [img, setImg] = useState(null);
 
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
+    setTextBox("");
     if (img) {
       const storageRef = ref(storage, uuid());
 
@@ -69,15 +71,24 @@ const Input = () => {
     setImg(null);
   };
 
-  //   console.log(img);
+  console.log(img);
 
   return (
     <div className="input">
+      {img && (
+        <div className="img-selected" onClick={() => setImg(null)}>
+          <img src={Attach} alt="" />
+          <span>{img?.name}</span>
+        </div>
+      )}
       <input
         type="text"
         placeholder="Type something..."
-        onChange={(e) => setText(e.target.value)}
-        value={text}
+        onChange={(e) => {
+          setText(e.target.value);
+          setTextBox(e.target.value);
+        }}
+        value={textBox}
       />
       <div className="send">
         <img src={Attach} alt="" />
