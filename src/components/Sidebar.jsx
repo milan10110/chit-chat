@@ -1,16 +1,26 @@
-import React from 'react'
-import Navbar from './Navbar'
-import Search from "./Search"
-import Chats from './Chats';
+import React, { useContext, useEffect, useState } from "react";
+import Navbar from "./Navbar";
+import Search from "./Search";
+import Chats from "./Chats";
+import { ChatContext } from "../context/ChatContext";
 
 const Sidebar = () => {
-    return (
-        <div className='sidebar'>
-            <Navbar />
-            <Search />
-            <Chats />
-        </div>
-    )
-}
+  const { data } = useContext(ChatContext);
+  const [isUserSelected, setIsUserSelected] = useState(false);
 
-export default Sidebar
+  useEffect(() => {
+    data?.chatId !== "null"
+      ? setIsUserSelected(true)
+      : setIsUserSelected(false);
+  }, [data]);
+
+  return (
+    <div className={`sidebar ${isUserSelected ? "hide" : ""}`}>
+      <Navbar />
+      <Search />
+      <Chats />
+    </div>
+  );
+};
+
+export default Sidebar;

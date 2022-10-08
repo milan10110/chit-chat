@@ -81,10 +81,13 @@
   .container {
     border: 1px solid white;
     border-radius: 10px;
-    width: 65%;
+    width: 90%;
     height: 80%;
     display: flex;
     overflow: hidden;
+    @media screen and (min-width: 786px) {
+      width: 65%;
+    }
 
     .sidebar {
       flex: 1;
@@ -174,6 +177,14 @@
         }
       }
     }
+    .hide {
+      @media screen and (mix-width: 786px) {
+        display: none;
+      }
+      @media screen and (min-width: 786px) {
+        display: block;
+      }
+    }
     .chat {
       flex: 2;
 
@@ -185,6 +196,22 @@
         justify-content: space-between;
         padding: 10px;
         color: lightgray;
+
+        .user {
+          display: flex;
+          align-items: center;
+          .back-btn {
+            // display: none;
+            font-size: 12px;
+            cursor: pointer;
+            padding-right: 10px;
+            margin: 0 10px;
+            border-right: 1px solid #ddddf7;
+            @media screen and (min-width: 786px) {
+              display: none;
+            }
+          }
+        }
       }
 
       .chat-icons {
@@ -298,6 +325,10 @@
       }
     }
     .not-selected {
+      @media screen and (max-width: 786px) {
+        display: none;
+      }
+      // @media screen and (min-width: 480px) {
       background-color: #ddddf7;
       color: gray;
       display: flex;
@@ -305,8 +336,10 @@
       justify-content: center;
 
       span {
+        padding: 20px;
         font-size: 2rem;
       }
+      // }
     }
   }
   .img-selected {
@@ -331,4 +364,8 @@
       text-overflow: ellipsis;
     }
   }
+}
+
+.hide {
+  display: none;
 }

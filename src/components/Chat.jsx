@@ -7,12 +7,18 @@ import Input from "./Input";
 import { ChatContext } from "../context/ChatContext";
 
 const Chat = () => {
-  const { data } = useContext(ChatContext);
+  const { data, dispatch } = useContext(ChatContext);
+  const resetUser = () => dispatch({ type: "RESET_USER" });
 
   return data.chatId !== "null" ? (
     <div className="chat">
       <div className="chat-info">
-        <span>{data.user?.displayName}</span>
+        <div className="user">
+          <span onClick={resetUser} className="back-btn">
+            Back
+          </span>
+          <span>{data.user?.displayName}</span>
+        </div>
         <div className="chat-icons">
           <img src={Cam} alt="" />
           <img src={Add} alt="" />
