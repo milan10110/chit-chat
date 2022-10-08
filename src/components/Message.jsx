@@ -15,13 +15,13 @@ const Message = ({ message }) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
 
-  console.log(
-    message.date.toDate().toLocaleString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    })
-  );
+  // console.log(
+  //   message.date.toDate().toLocaleString("en-US", {
+  //     hour: "2-digit",
+  //     minute: "2-digit",
+  //     hour12: true,
+  //   })
+  // );
 
   return (
     (message.text !== "" || message.img) && (

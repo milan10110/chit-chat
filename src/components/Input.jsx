@@ -71,7 +71,7 @@ const Input = () => {
     setImg(null);
   };
 
-  console.log(img);
+  // console.log(img);
 
   return (
     <div className="input">
@@ -88,6 +88,7 @@ const Input = () => {
           setText(e.target.value);
           setTextBox(e.target.value);
         }}
+        onKeyDown={(e) => e.code === "Enter" && handleSend()}
         value={textBox}
       />
       <div className="send">
